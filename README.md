@@ -1,235 +1,237 @@
-<div align="center">
+# ❤️ Cardiovascular Disease Prediction using Machine Learning
 
-# ❤️ Cardio Risk Predictor
+## 📌 Overview
 
-### Advanced Cardiovascular Disease Risk Assessment System
+Cardiovascular diseases (CVDs) are among the leading causes of death worldwide. Early identification of high-risk patients can help improve preventive care and treatment outcomes.
 
-[![Live Demo](https://img.shields.io/badge/🚀_Live_Demo-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://cardiovascularprediction-nvluftnarc9lv2eapp5asf.streamlit.app/)
-[![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.5.0-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
-[![Streamlit](https://img.shields.io/badge/Streamlit-App-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://streamlit.io)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+This project uses Machine Learning techniques to predict the likelihood of cardiovascular disease based on patient health indicators such as age, blood pressure, cholesterol levels, glucose levels, BMI, smoking habits, alcohol consumption, and physical activity.
 
-<br/>
-
-> **Predict cardiovascular disease risk using 14 engineered clinical parameters — powered by a Gradient Boosting model trained on 70,000 patient records.**
-
-<br/>
-
-![Accuracy](https://img.shields.io/badge/Accuracy-73.31%25-brightgreen?style=flat-square)
-![ROC AUC](https://img.shields.io/badge/ROC_AUC-80.04%25-blue?style=flat-square)
-![Training Records](https://img.shields.io/badge/Training_Records-70K-purple?style=flat-square)
-![Features](https://img.shields.io/badge/Features-14_Clinical-orange?style=flat-square)
-
-</div>
+The final model was built using **XGBoost**, which achieved the best performance among all evaluated models.
 
 ---
 
-## 📋 Table of Contents
+## 🚀 Live Features
 
-- [Overview](#-overview)
-- [Live Demo](#-live-demo)
-- [Key Features](#-key-features)
-- [Model Performance](#-model-performance)
-- [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
-- [Input Features](#-input-features)
-- [Getting Started](#-getting-started)
-- [App Sections](#-app-sections)
-- [Risk Interpretation](#-risk-interpretation)
-- [Disclaimer](#-disclaimer)
-- [Author](#-author)
+* Patient Risk Prediction
+* XGBoost-Based Classification Model
+* Automated Feature Engineering
+* Interactive Streamlit Web Application
+* Risk Probability Visualization
+* Feature Importance Analysis
 
 ---
 
-## 🎯 Overview
+## 📊 Dataset
 
-**Cardio Risk Predictor** is a full-stack machine learning web application that estimates a patient's probability of having cardiovascular disease based on clinical measurements and lifestyle factors. The system uses a trained **Gradient Boosting Classifier** and provides real-time predictions through an interactive, beautifully designed Streamlit interface.
+**Source:** Kaggle Cardiovascular Disease Dataset
 
-This project covers the full ML lifecycle — data preprocessing, feature engineering, model training & validation, and deployment as a production-ready web app.
+* Total Records: 70,000
+* Cleaned Records: 68,702
+* Target Variable: `cardio`
+* Problem Type: Binary Classification
 
----
+### Features
 
-## 🚀 Live Demo
-
-👉 **[Try it Live on Streamlit](https://cardiovascularprediction-nvluftnarc9lv2eapp5asf.streamlit.app/)**
-
-No installation required — run it directly in your browser!
-
----
-
-## ✨ Key Features
-
-| Feature | Description |
-|---|---|
-| 🩺 **Risk Prediction** | Real-time cardiovascular risk assessment with probability score |
-| 📊 **Model Dashboard** | Confusion Matrix, ROC Curve, and Precision-Recall Curve |
-| 📁 **Batch Prediction** | Upload a CSV and process hundreds of patient records at once |
-| 📈 **Interactive Visuals** | Plotly-powered charts, donut risk gauge, and blood pressure indicator |
-| 🔢 **Auto-computed Features** | BMI, Pulse Pressure, and SBP/DBP Ratio calculated on-the-fly |
-| 💾 **Export Results** | Download batch predictions as a CSV file |
-| 📱 **Responsive UI** | Clean, modern interface with color-coded risk levels |
+| Feature     | Description              |
+| ----------- | ------------------------ |
+| age         | Patient Age              |
+| gender      | Gender                   |
+| height      | Height (cm)              |
+| weight      | Weight (kg)              |
+| ap_hi       | Systolic Blood Pressure  |
+| ap_lo       | Diastolic Blood Pressure |
+| cholesterol | Cholesterol Level        |
+| gluc        | Glucose Level            |
+| smoke       | Smoking Status           |
+| alco        | Alcohol Consumption      |
+| active      | Physical Activity        |
+| cardio      | Target Variable          |
 
 ---
 
-## 📊 Model Performance
+## 🔍 Exploratory Data Analysis
 
-The final model was evaluated on a held-out test set:
+The following analyses were performed:
 
-| Metric | Score |
-|---|---|
-| ✅ Accuracy | **73.31%** |
-| 📈 ROC AUC | **80.04%** |
-| 🔁 Validation | 5-Fold Cross-Validation |
-| 🗃️ Training Data | 70,000 patient records |
+* Dataset Inspection
+* Missing Value Analysis
+* Statistical Summary
+* Target Distribution Analysis
+* Correlation Heatmap
+* Outlier Detection using Boxplots
 
-**Risk Level Interpretation:**
+### Outlier Handling
 
+Removed unrealistic values from:
+
+* Height
+* Weight
+* Systolic Blood Pressure
+* Diastolic Blood Pressure
+
+---
+
+## ⚙️ Feature Engineering
+
+To improve model performance, the following features were created:
+
+### BMI (Body Mass Index)
+
+BMI = Weight / Height²
+
+### Pulse Pressure
+
+Pulse Pressure = Systolic BP − Diastolic BP
+
+### Mean Arterial Pressure (MAP)
+
+MAP = (2 × Diastolic BP + Systolic BP) / 3
+
+### Age Conversion
+
+Converted age from days to years.
+
+---
+
+## 🤖 Models Evaluated
+
+The following machine learning models were trained and compared:
+
+* Logistic Regression
+* Decision Tree
+* Random Forest
+* K-Nearest Neighbors (KNN)
+* Support Vector Machine (SVM)
+* XGBoost
+
+---
+
+## 📈 Model Performance
+
+| Model               |   Accuracy |
+| ------------------- | ---------: |
+| XGBoost             | **73.17%** |
+| Random Forest       |     73.14% |
+| SVM                 |     72.90% |
+| Decision Tree       |     72.61% |
+| Logistic Regression |     72.28% |
+| KNN                 |     70.50% |
+
+---
+
+## 🏆 Final Model
+
+### XGBoost Classifier
+
+Parameters:
+
+```python
+XGBClassifier(
+    n_estimators=300,
+    max_depth=4,
+    learning_rate=0.05,
+    random_state=42,
+    eval_metric="logloss"
+)
 ```
-< 30%   →  🟢 Very Low Risk
-30–49%  →  🟡 Low Risk
-50–69%  →  🟠 Moderate Risk
-70–89%  →  🔴 High Risk
-≥ 90%   →  🚨 Very High Risk
-```
 
 ---
 
-## 🛠️ Tech Stack
+## 📋 Evaluation Metrics
 
+| Metric        | Value  |
+| ------------- | ------ |
+| Accuracy      | 73.17% |
+| ROC-AUC Score | 0.80   |
+
+### Why ROC-AUC?
+
+For medical classification problems, ROC-AUC is often more informative than accuracy because it evaluates how well the model distinguishes between patients with and without cardiovascular disease across different thresholds.
+
+---
+
+## 📊 Feature Importance
+
+Top features identified by XGBoost:
+
+| Feature     | Importance |
+| ----------- | ---------: |
+| ap_hi       |      0.629 |
+| cholesterol |      0.099 |
+| map         |      0.075 |
+| age         |      0.060 |
+| active      |      0.025 |
+| smoke       |      0.020 |
+| alco        |      0.016 |
+| bmi         |      0.016 |
+| gluc        |      0.015 |
+| weight      |      0.012 |
+
+### Key Finding
+
+Systolic Blood Pressure (`ap_hi`) was the strongest predictor of cardiovascular disease, followed by cholesterol levels, MAP, and age.
+
+---
+
+## 💻 Technologies Used
+
+* Python
+* Pandas
+* NumPy
+* Matplotlib
+* Seaborn
+* Scikit-Learn
+* XGBoost
+* Joblib
+* Streamlit
+
+---
+
+## 🌐 Deployment
+
+The trained model was saved using Joblib:
+
+```python
+joblib.dump(xgb, "best_cardio_xgboost_model.pkl")
 ```
-Backend / ML          Frontend / UI         Data Processing
-─────────────────     ─────────────────     ─────────────────
-Python 3.8+           Streamlit             Pandas
-Scikit-learn 1.5.0    Plotly                NumPy
-XGBoost               Matplotlib            Joblib
-imbalanced-learn      Seaborn
-```
+
+The application was deployed using Streamlit for real-time cardiovascular risk prediction.
 
 ---
 
 ## 📁 Project Structure
 
-```
+```text
 cardiovascular_prediction/
 │
-├── app.py                          # Main Streamlit application (777 lines)
-├── model.ipynb                     # Model training & evaluation notebook
-├── best_cardio_model_final.joblib  # Trained Gradient Boosting model
-│
-├── cardio_train.csv                # Original training dataset
-├── X_test.csv                      # Test features (for performance dashboard)
-├── y_test.csv                      # Test labels
-├── y_pred.csv                      # Model predictions on test set
-│
-├── requirements.txt                # Python dependencies
-└── .devcontainer/                  # Dev container configuration
+├── app.py
+├── best_cardio_xgboost_model.pkl
+├── requirements.txt
+├── notebook.ipynb
+├── cardio_train.csv
+└── README.md
 ```
 
 ---
 
-## 🔬 Input Features
+## 📌 Conclusion
 
-The model uses **14 engineered clinical parameters**:
+This project demonstrates an end-to-end Machine Learning pipeline for cardiovascular disease prediction, including:
 
-### Direct Inputs
-| Feature | Description | Type |
-|---|---|---|
-| `age_years` | Patient age | Numeric |
-| `height` | Height in cm | Numeric |
-| `weight` | Weight in kg | Numeric |
-| `ap_hi` | Systolic blood pressure (mmHg) | Numeric |
-| `ap_lo` | Diastolic blood pressure (mmHg) | Numeric |
-| `gender` | 1 = Male, 2 = Female | Categorical |
-| `cholesterol` | 1 = Normal, 2 = Above Normal, 3 = High | Categorical |
-| `gluc` | 1 = Normal, 2 = Above Normal, 3 = High | Categorical |
-| `smoke` | 0 = Non-Smoker, 1 = Smoker | Categorical |
-| `alco` | 0 = No, 1 = Yes | Categorical |
-| `active` | 0 = Inactive, 1 = Active | Categorical |
+* Data Cleaning
+* Exploratory Data Analysis
+* Feature Engineering
+* Model Comparison
+* XGBoost Training
+* Model Evaluation
+* Streamlit Deployment
 
-### Auto-Computed Features
-| Feature | Formula |
-|---|---|
-| `bmi` | `weight / (height/100)²` |
-| `pulse_pressure` | `ap_hi - ap_lo` |
-| `sbp_dbp_ratio` | `ap_hi / ap_lo` |
+The final XGBoost model achieved **73.17% Accuracy** and **0.80 ROC-AUC**, making it effective for identifying individuals at elevated cardiovascular risk.
 
 ---
 
-## ⚙️ Getting Started
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/YashPratapRai/cardiovascular_prediction.git
-cd cardiovascular_prediction
-```
-
-### 2. Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Run the App
-
-```bash
-streamlit run app.py
-```
-
-The app will open at `http://localhost:8501` in your browser.
-
-> **Note:** Ensure `best_cardio_model_final.joblib`, `X_test.csv`, and `y_test.csv` are in the same directory as `app.py` for full functionality.
-
----
-
-## 📱 App Sections
-
-### 🏠 Predict
-Enter patient details across three tabs — **Basic Information**, **Vital Signs**, and **Lifestyle Factors** — then click **Predict** to instantly get:
-- A visual risk donut chart with percentage
-- Color-coded risk classification (High Risk / Low Risk)
-- Key contributing health metrics
-
-### 📊 Model Performance
-View the model's evaluation metrics on the test dataset:
-- Confusion Matrix (heatmap)
-- ROC Curve with AUC score
-- Precision-Recall Curve
-
-### 📁 Batch Prediction
-Upload a `.csv` file containing multiple patient records. The app will:
-- Validate required columns
-- Compute derived features automatically
-- Predict risk for every patient
-- Display a styled, color-gradient results table
-- Offer a timestamped CSV download
-
-### ℹ️ About / Info
-Overview of the project, model details, feature importance chart, and developer contact.
-
----
-
-## ⚠️ Disclaimer
-
-> This tool is intended for **educational and informational purposes only**. It is **not a substitute for professional medical advice, diagnosis, or treatment**. Always consult a qualified healthcare provider for any medical concerns.
-
----
-
-## 👨‍💻 Author
+### 👨‍💻 Author
 
 **Yash Pratap Rai**
 
-[![GitHub](https://img.shields.io/badge/GitHub-YashPratapRai-181717?style=for-the-badge&logo=github)](https://github.com/YashPratapRai)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-yash--pratap--rai-0A66C2?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/yash-pratap-rai/)
-[![Email](https://img.shields.io/badge/Email-raiyashpratap@gmail.com-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:raiyashpratap@gmail.com)
-
----
-
-<div align="center">
-
-⭐ **If you found this project helpful, please give it a star!** ⭐
-
-Made with ❤️ by [Yash Pratap Rai](https://github.com/YashPratapRai)
-
-</div>
+Machine Learning | Data Science | AI Enthusiast
